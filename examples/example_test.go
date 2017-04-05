@@ -22,13 +22,15 @@ func TestStringItr(t *testing.T) {
 		return fmt.Sprintf("Hello %s", i), nil
 	})
 
-	res0 := "Hello John"
-	if res[0] != res0 {
-		t.Fatalf("want %v, have %v", res0, res[0])
+	expected := []string{
+		"Hello John",
+		"Hello Jane",
 	}
-	res1 := "Hello Jane"
-	if res[1] != res1 {
-		t.Fatalf("want %v, have %v", res1, res[1])
+
+	for i := 0; i < 2; i++ {
+		if expected[i] != res[i] {
+			t.Fatalf("want %v, have %v", expected[i], res[i])
+		}
 	}
 
 }
@@ -43,12 +45,14 @@ func TestStructItr(t *testing.T) {
 		return fmt.Sprintf("Hi %s", i.Name), nil
 	})
 
-	res0 := "Hi Sam"
-	if res[0] != res0 {
-		t.Fatalf("want %v, have %v", res0, res[0])
+	expected := []string{
+		"Hi Sam",
+		"Hi Sarah",
 	}
-	res1 := "Hi Sarah"
-	if res[1] != res1 {
-		t.Fatalf("want %v, have %v", res1, res[1])
+
+	for i := 0; i < 2; i++ {
+		if expected[i] != res[i] {
+			t.Fatalf("want %v, have %v", expected[i], res[i])
+		}
 	}
 }
