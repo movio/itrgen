@@ -4,31 +4,39 @@ Typesafe code generators for common slice fuctions such as .Map(fn)
 
 ## Installation
 
-    go get -u github.com/movio/itrgen/.../
+```shell
+go get -u github.com/movio/itrgen/.../
+```
 
 ## Usage
 
 Add go:generate commands to a file eg,
 
-    package main
-    type MyStruct struct {
-        Name string
-    }
-    //go:generate itrgen -type MyStruct -map-to="MyStruct,string,int64"
+```go
+package main
+type MyStruct struct {
+    Name string
+}
+//go:generate itrgen -type MyStruct -map-to="MyStruct,string,int64"
+```
 
 then
 
-    > go generate
+```shell
+go generate
+```
 
 then
 
-    // Usage
-    ...
-    list := MyStructItr{MyStruct{"John"}, MyStruct{"Jane"}}
-    hello, _ := list.MapString(func(s MyStruct) (string, error) {
-     n   return fmt.Sprintf("hello %v", s.Name)
-    })
-    ...
+```go
+// Usage
+// ...
+list := MyStructItr{MyStruct{"John"}, MyStruct{"Jane"}}
+hello, _ := list.MapString(func(s MyStruct) (string, error) {
+   return fmt.Sprintf("hello %v", s.Name)
+})
+// ...
+```
     
 ### Arguments
 
@@ -45,23 +53,27 @@ then
 
 ## Exmaples
 
-    //go:generate itrgen -package="main" -type="string" -map-to="MyStruct,string,int64"
-    // Will create
-    type StringItr []string
-    func (itr StringItr) MapMyStruct(fn func(string) (MyStruct, error)) ([]MyStruct, error) { ... }
-    func (itr StringItr) MapString(fn func(string) (string, error)) ([]string, error) { ... }
-    func (itr StringItr) MapInt64(fn func(string) (int64, error)) ([]int64, error) { ... }
+```go
+//go:generate itrgen -package="main" -type="string" -map-to="MyStruct,string,int64"
+// Will create
+type StringItr []string
+func (itr StringItr) MapMyStruct(fn func(string) (MyStruct, error)) ([]MyStruct, error) { ... }
+func (itr StringItr) MapString(fn func(string) (string, error)) ([]string, error) { ... }
+func (itr StringItr) MapInt64(fn func(string) (int64, error)) ([]int64, error) { ... }
 
-    //go:generate itrgen -type=MyStruct -map-to="MyStruct,string,int64"
-    // Will create
-    type MyStructItr []MyStruct
-    func (itr MyStructItr) MapMyStruct(fn func(MyStruct) (MyStruct, error)) ([]MyStruct, error) { ... }
-    func (itr MyStructItr) MapString(fn func(MyStruct) (string, error)) ([]string, error) { ... }
-    func (itr MyStructItr) MapInt64(fn func(MyStruct) (int64, error)) ([]int64, error) { ... }
+//go:generate itrgen -type=MyStruct -map-to="MyStruct,string,int64"
+// Will create
+type MyStructItr []MyStruct
+func (itr MyStructItr) MapMyStruct(fn func(MyStruct) (MyStruct, error)) ([]MyStruct, error) { ... }
+func (itr MyStructItr) MapString(fn func(MyStruct) (string, error)) ([]string, error) { ... }
+func (itr MyStructItr) MapInt64(fn func(MyStruct) (int64, error)) ([]int64, error) { ... }
+```
     
 ### Run the Examples
 
-    cd examples
-    rm *_itr.go
-    go generate
-    go test
+```shell
+cd examples
+rm *_itr.go
+go generate
+go test
+```
