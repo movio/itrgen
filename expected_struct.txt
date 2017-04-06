@@ -7,7 +7,9 @@ package custom
 // MyStruct Iterator
 type MyStructItr []MyStruct
 
-// MapString Utility Map function
+// MapString takes a mapping function, invokes the mapping function
+// for each element in itr, and returns the results as a slice.
+// If the mapping function returns err, MapString immediately returns nil, err.
 func (itr MyStructItr) MapString(fn func(MyStruct) (string, error)) ([]string, error) {
 	results := []string{}
 	for _, i := range itr {
@@ -20,7 +22,9 @@ func (itr MyStructItr) MapString(fn func(MyStruct) (string, error)) ([]string, e
 	return results, nil
 }
 
-// MapInt64 Utility Map function
+// MapInt64 takes a mapping function, invokes the mapping function
+// for each element in itr, and returns the results as a slice.
+// If the mapping function returns err, MapInt64 immediately returns nil, err.
 func (itr MyStructItr) MapInt64(fn func(MyStruct) (int64, error)) ([]int64, error) {
 	results := []int64{}
 	for _, i := range itr {

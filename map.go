@@ -6,7 +6,9 @@ import (
 )
 
 var mapTemplate = `
-// Map{{.ResultTitle}} Utility Map function
+// Map{{.ResultTitle}} takes a mapping function, invokes the mapping function
+// for each element in itr, and returns the results as a slice.
+// If the mapping function returns err, Map{{.ResultTitle}} immediately returns nil, err.
 func (itr {{.Title}}Itr) Map{{.ResultTitle}}(fn func({{.Name}}) ({{.ResultName}}, error)) ([]{{.ResultName}}, error) {
 	results := []{{.ResultName}}{}
 	for _, i := range itr {
@@ -20,6 +22,7 @@ func (itr {{.Title}}Itr) Map{{.ResultTitle}}(fn func({{.Name}}) ({{.ResultName}}
 }
 `
 
+// MapType holds data needed to render the code generation template
 type MapType struct {
 	Title       string
 	Name        string

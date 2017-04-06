@@ -9,7 +9,9 @@ import (
 func TestMapToString(t *testing.T) {
 
 	expected := `
-// MapMyStruct Utility Map function
+// MapMyStruct takes a mapping function, invokes the mapping function
+// for each element in itr, and returns the results as a slice.
+// If the mapping function returns err, MapMyStruct immediately returns nil, err.
 func (itr StringItr) MapMyStruct(fn func(string) (MyStruct, error)) ([]MyStruct, error) {
 	results := []MyStruct{}
 	for _, i := range itr {
