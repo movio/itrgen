@@ -7,7 +7,9 @@ package main
 // string Iterator
 type StringItr []string
 
-// MapString Utility Map function
+// MapString takes a mapping function, invokes the mapping function
+// for each element in itr, and returns the results as a slice.
+// If the mapping function returns err, MapString immediately returns nil, err.
 func (itr StringItr) MapString(fn func(string) (string, error)) ([]string, error) {
 	results := []string{}
 	for _, i := range itr {
@@ -20,7 +22,9 @@ func (itr StringItr) MapString(fn func(string) (string, error)) ([]string, error
 	return results, nil
 }
 
-// MapMyStruct Utility Map function
+// MapMyStruct takes a mapping function, invokes the mapping function
+// for each element in itr, and returns the results as a slice.
+// If the mapping function returns err, MapMyStruct immediately returns nil, err.
 func (itr StringItr) MapMyStruct(fn func(string) (MyStruct, error)) ([]MyStruct, error) {
 	results := []MyStruct{}
 	for _, i := range itr {

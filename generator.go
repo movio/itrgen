@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Type represents the golang type that you are generating functions for
 type Type struct {
 	Package string
 	Title   string
@@ -13,6 +14,8 @@ type Type struct {
 	Maps    []string
 }
 
+// NewType constructs a Type, with the Title attribute set to TitleCase `name`.
+// i.e. generated methods for `mytype` will be exported as `MytypeMap`.
 func NewType(pkg string, name string, maps []string) Type {
 	return Type{
 		pkg,
@@ -22,6 +25,7 @@ func NewType(pkg string, name string, maps []string) Type {
 	}
 }
 
+// Generate creates iterator code for Type t and writes it to ./(typename)_itr.go
 func Generate(t Type) error {
 	// Get code
 	code, err := generateCode(t)
