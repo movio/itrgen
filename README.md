@@ -51,7 +51,7 @@ hello, _ := list.MapString(func(s MyStruct) (string, error) {
 
 
 
-## Exmaples
+## Examples
 
 ```go
 //go:generate itrgen -package="main" -type="string" -map-to="MyStruct,string,int64"
